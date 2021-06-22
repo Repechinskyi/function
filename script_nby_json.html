@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script>
+function kyrsNBU(){
+	var ajax=new XMLHttpRequest();
+	var now = new Date();
+	var month_rait = now.getMonth()+1;
+	date_rait = now.getFullYear() + '0'+month_rait + now.getDate();
+	ajax.open('GET', 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date='+date_rait+'&json');
+	ajax.responseType='json';
+	ajax.onload=function(){
+		for(var i=0; i<this.response.length;i++){
+			var s ='<div><b>(Курс НБУ) EUR </b> : '+this.response[i].rate+'</div>';
+		}
+		document.write(s);
+		}
+	ajax.send(null);
+}
+kyrsNBU();
+</script>
+
+</body>
+</html>
+
+
